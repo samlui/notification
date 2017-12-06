@@ -1,0 +1,26 @@
+#%RAML 1.0
+version: v1
+title: Notification
+baseUri: https://mocksvc.mulesoft.com/mocks/b4cdd984-79d2-40d7-8fe3-763835084947/api # baseUri: http://localhost:8081/api
+types: 
+  notification: !include exchange_modules/7372ce93-ae11-48d5-bcaf-a98a07f1bb5e.customers.sgm/notification-datatype/1.0.1/notification-datatype.raml
+/notifications:
+  displayName: Notifications
+  description: |
+    Working with notifications:
+    * Creating notifications
+  post:
+    description: |
+      Create a new Notification
+    body:
+      application/json:
+        example: !include exchange_modules/7372ce93-ae11-48d5-bcaf-a98a07f1bb5e.customers.sgm/notification-example/1.0.7/notification-example.raml
+    responses:
+      200:
+        body: 
+          application/json:
+            example: |
+              {
+                "status": "success"
+              }
+                
