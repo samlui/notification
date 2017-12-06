@@ -1,0 +1,7 @@
+{
+"type" : "SMS",
+"subject" : "Testing email",
+"message" : "Testing Hello from testing app",
+"priority" : "MINOR",
+"recipient" : +85269963368
+}
