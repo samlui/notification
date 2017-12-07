@@ -22,8 +22,8 @@ jobs:
       - checkout
 
       - run: |
-          cd notification
           cp settings.xml ~/.m2
+          cd notification
           mvn package
 
       - store_artifacts:
