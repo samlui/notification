@@ -23,6 +23,7 @@ jobs:
 
       - run: |
           cd notification
+          cp settings.xml ~/.m2
           mvn package
 
       - store_artifacts:
