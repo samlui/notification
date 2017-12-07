@@ -26,7 +26,7 @@ jobs:
           mvn package
 
       - store_artifacts:
-          path: target/notification-1.0.0-SNAPSHOT.zip
+          path: notification/target/notification-1.0.0-SNAPSHOT.zip
       
   test:
     docker:
@@ -40,4 +40,4 @@ jobs:
           mvn clean test -Dmunit.test=.*-test.*
       
       - store_test_results:
-          path: target/munit-reports
+          path: notification/target/munit-reports
