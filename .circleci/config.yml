@@ -23,6 +23,7 @@ jobs:
 
       - run: |
           ls -la ~
+          ls -la ~/project
           mvn -v
           echo done run
           mkdir ~/.m2
