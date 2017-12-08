@@ -41,9 +41,11 @@ jobs:
       
     steps:
       - checkout
+      
       - run: | 
+          echo Running test
           cd ~/project/notification
           mvn clean test -Dmunit.test=.*-test.*
-      
+
       - store_test_results:
           path: notification/target/munit-reports
