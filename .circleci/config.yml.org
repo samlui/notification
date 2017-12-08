@@ -1,0 +1,65 @@
+# Java Maven CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-java/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/openjdk:8-jdk
+      
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/postgres:9.4
+
+    environment:
+      # Customize the JVM maximum heap limit
+      MAVEN_OPTS: -Xmx3200m
+      TEST_REPORTS: /tmp/test-reports
+    
+    steps:
+      - checkout
+      
+      - run: |
+          echo Download Dependencies
+          ls -la ~
+          ls -la ~/project
+          mvn -v
+          echo done run
+          mkdir ~/.m2
+          cp ~/project/settings.xml ~/.m2
+          cd ~/project/notification
+          mvn package
+
+      - save_cache:
+          key: notification-{{ checksum "~/project/notification/pom.xml" }}
+          paths:
+            - ~/.m2
+            
+      - store_artifacts:
+          path: notification/target/notification-1.0.0-SNAPSHOT.zip
+          
+      - run: |
+          echo Running MUnit tests
+          cd ~/project/notification
+          mvn clean test -Dmunit.test=.*-test.*
+          cp ~/project/notification/target/surefire-reports/*.xml ${TEST_REPORTS}
+          cp ~/project/notification/target/surefire-reports/*.txt ${TEST_REPORTS}
+      
+      - store_artifacts:
+          path: notification/target/surefire-reports
+
+      - store_artifacts:
+          path: notification/target/munit-reports
+          
+      # Upload test results
+      - store_test_results:
+          path: ${TEST_REPORTS}
+          
+      - run: |
+          echo Deploy to Cloudhub
+          cd ~/project/notification
+          mvn package mule:deploy -DskipMunitTests
+          
