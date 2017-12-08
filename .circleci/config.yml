@@ -23,9 +23,9 @@ jobs:
 
       - run: |
           mvn -v
-          mkdir ~/.m2
           ls -ld ~
           echo done run
+          mkdir ~/.m2
 
       - store_artifacts:
           path: notification/target/notification-1.0.0-SNAPSHOT.zip
