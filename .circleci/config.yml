@@ -16,9 +16,16 @@ jobs:
     steps:
       - checkout
       - run: echo test
+  deploy:
+    docker:
+      - image: circleci/openjdk:8-jdk
+    steps:
+      - checkout
+      - run: echo deploy
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
       - test
+      - deploy
