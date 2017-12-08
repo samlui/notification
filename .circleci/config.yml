@@ -61,7 +61,5 @@ jobs:
       - run: |
           echo Deploy to Cloudhub
           cd ~/project/notification
-          mvn mule:deploy
+          mvn package mule:deploy -DskipMunitTests
           
-
- 
