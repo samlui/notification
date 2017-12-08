@@ -21,9 +21,6 @@ jobs:
     steps:
       - checkout
       
-      - restore_cache:
-          key: notification-{{ checksum "~/project/settings.xml" }}
-      
       - run: |
           ls -la ~
           ls -la ~/project
@@ -32,14 +29,6 @@ jobs:
           mkdir ~/.m2
           cp ~/project/settings.xml ~/.m2
           cd ~/project/notification
-          mvn dependency:go-offline
-      
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: notification-{{ checksum "~/project/settings.xml" }}
-      
-      - run: |
           cd ~/project/notification
           mvn package
 
