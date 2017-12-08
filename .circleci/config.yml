@@ -49,6 +49,7 @@ jobs:
       
       - store_artifacts:
           path: notification/target/munit-reports
+          path: notification/target/surefire-reports
           
       # Upload test results
       - store_test_results:
