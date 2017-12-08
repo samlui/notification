@@ -22,8 +22,8 @@ jobs:
       - checkout
 
       - run: |
+          ls -la ~
           mvn -v
-          ls -ld ~
           echo done run
           mkdir ~/.m2
 
