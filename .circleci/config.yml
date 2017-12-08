@@ -22,7 +22,6 @@ jobs:
       - checkout
 
       - run: |
-          cp ~/settings.xml ~/.m2
           cd notification
           mvn package
 
