@@ -44,8 +44,8 @@ jobs:
       - run: |
           cd ~/project/notification
           mvn clean test -Dmunit.test=.*-test.*
-          cp ~/target/surefire-reports/*.xml ${TEST_REPORTS}
-          cp ~/target/surefire-reports/*.txt ${TEST_REPORTS}
+          cp ~/project/notification/target/surefire-reports/*.xml ${TEST_REPORTS}
+          cp ~/project/notification/target/surefire-reports/*.txt ${TEST_REPORTS}
       
       - store_artifacts:
           path: notification/target/munit-reports
