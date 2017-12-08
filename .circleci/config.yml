@@ -22,7 +22,7 @@ jobs:
       - checkout
 
       - run: |
-          cat ~/.m2/settings.xml
+          mvn -v
 
       - store_artifacts:
           path: notification/target/notification-1.0.0-SNAPSHOT.zip
