@@ -28,6 +28,7 @@ jobs:
           echo done run
           mkdir ~/.m2
           cp ~/project/settings.xml ~/.m2
+          cd ~/project/notification
           mvn package
 
       - store_artifacts:
@@ -41,7 +42,7 @@ jobs:
     steps:
       - checkout
       - run: | 
-          cd notification
+          cd ~/project/notification
           mvn clean test -Dmunit.test=.*-test.*
       
       - store_test_results:
