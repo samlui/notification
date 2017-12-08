@@ -20,7 +20,7 @@ jobs:
     
     steps:
       - checkout
-
+      
       - run: |
           ls -la ~
           ls -la ~/project
@@ -34,18 +34,4 @@ jobs:
       - store_artifacts:
           path: notification/target/notification-1.0.0-SNAPSHOT.zip
       
-  test:
-    docker:
-      # specify the version you desire here
-      - image: circleci/openjdk:8-jdk
-      
-    steps:
-      - checkout
-      
-      - run: | 
-          echo Running test
-          cd ~/project/notification
-          mvn clean test -Dmunit.test=.*-test.*
-
-      - store_test_results:
-          path: notification/target/munit-reports
+ 
