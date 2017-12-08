@@ -21,6 +21,16 @@ jobs:
     steps:
       - checkout
       
+      - restore_cache:
+          key: notification-{{ checksum "settings.xml" }}
+      
+      - run: mvn dependency:go-offline
+      
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: notification-{{ checksum "settings.xml" }}
+      
       - run: |
           ls -la ~
           ls -la ~/project
