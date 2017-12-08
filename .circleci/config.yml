@@ -25,6 +25,11 @@ jobs:
           key: notification-{{ checksum "~/project/settings.xml" }}
       
       - run: |
+          ls -la ~
+          ls -la ~/project
+          mvn -v
+          echo done run
+          mkdir ~/.m2
           cp ~/project/settings.xml ~/.m2
           cd ~/project/notification
           mvn dependency:go-offline
@@ -35,12 +40,6 @@ jobs:
           key: notification-{{ checksum "~/project/settings.xml" }}
       
       - run: |
-          ls -la ~
-          ls -la ~/project
-          mvn -v
-          echo done run
-          mkdir ~/.m2
-          cp ~/project/settings.xml ~/.m2
           cd ~/project/notification
           mvn package
 
