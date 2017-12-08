@@ -1,0 +1,105 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                          https://maven.apache.org/xsd/settings-1.0.0.xsd">
+	<localRepository>${user.home}/.m2/repository</localRepository>
+  <interactiveMode>true</interactiveMode>
+  <usePluginRegistry>false</usePluginRegistry>
+  <offline>false</offline>
+      <pluginGroups/>
+      <servers>
+	<server>
+      <id>server001</id>
+      <username>my_login</username>
+      <password>my_password</password>
+      <privateKey>${user.home}/.ssh/id_dsa</privateKey>
+      <passphrase>some_passphrase</passphrase>
+      <filePermissions>664</filePermissions>
+      <directoryPermissions>775</directoryPermissions>
+      <configuration></configuration>
+    </server>
+<server>
+ 
+    <id>MuleRepository</id>
+    <username>samuel.lui</username>
+    <password>Hello000</password>
+ 
+</server>
+
+<server>
+    <id>maven.oracle.com</id>
+    <username>samuelui@gmail.com</username>
+    <password>Hello000</password>
+    <configuration>
+      <basicAuthScope>
+        <host>ANY</host>
+        <port>ANY</port>
+        <realm>OAM 11g</realm>
+      </basicAuthScope>
+      <httpConfiguration>
+        <all>
+          <params>
+            <property>
+              <name>http.protocol.allow-circular-redirects</name>
+              <value>%b,true</value>
+            </property>
+          </params>
+        </all>
+      </httpConfiguration>
+    </configuration>
+  </server>
+
+	</servers>
+      <mirrors>
+<!--
+	<mirror>
+	  <id>CN</id>
+      	  <name>OSChina Central</name>
+      	  <url>http://maven.oschina.net/content/groups/public/</url>
+      	  <mirrorOf>central</mirrorOf>
+	</mirror>
+-->
+	<mirror>
+	  <id>repo2</id>
+      	  <name>Human Readable Name for this Mrror.</name>
+      	  <url>http://repo2.maven.org/maven2/</url>
+      	  <mirrorOf>central</mirrorOf>
+	</mirror>
+	<mirror>
+	  <id>net-cn</id>
+      	  <name>Human Readable Name for this Mirror.</name>
+      	  <url>http://maven.net.cn/content/groups/public/</url>
+      	  <mirrorOf>central</mirrorOf>
+	</mirror>
+
+      </mirrors>
+      <!--<mirrors/> -->
+      <proxies/>
+      <profiles>
+	<profile>
+ 
+    <id>Mule</id>
+    <activation>
+        <activeByDefault>true</activeByDefault>
+    </activation>
+    <repositories>
+        <repository>
+            <id>MuleRepository</id>
+            <name>MuleRepository</name>
+            <url>https://repository.mulesoft.org/nexus-ee/content/repositories/releases-ee/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+ 
+</profile>
+
+	</profiles>
+      <activeProfiles/>
+</settings>
+
