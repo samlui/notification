@@ -24,7 +24,10 @@ jobs:
       - restore_cache:
           key: notification-{{ checksum "~/project/settings.xml" }}
       
-      - run: mvn dependency:go-offline
+      - run: |
+          cp ~/project/settings.xml ~/.m2
+          cd ~/project/notification
+          mvn dependency:go-offline
       
       - save_cache:
           paths:
