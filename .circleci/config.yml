@@ -9,43 +9,16 @@ jobs:
       - image: circleci/openjdk:8-jdk
     steps:
       - checkout
-      - run: |
-          echo Download Dependencies
-          ls -la ~
-          ls -la ~/project
-          mvn -v
-          echo done run
-          mkdir ~/.m2
-          cp ~/project/settings.xml ~/.m2
-          cd ~/project/notification
-          mvn package
-      - store_artifacts:
-          path: notification/target/notification-1.0.0-SNAPSHOT.zip
-          
+      - run: echo build
   test:
     docker:
       - image: circleci/openjdk:8-jdk
     steps:
       - checkout
-      - run: |
-          echo Running MUnit tests
-          cd ~/project/notification
-          mvn clean test -Dmunit.test=.*-test.*
-          cp ~/project/notification/target/surefire-reports/*.xml ${TEST_REPORTS}
-          cp ~/project/notification/target/surefire-reports/*.txt ${TEST_REPORTS}
-      - store_artifacts:
-          path: notification/target/surefire-reports
-      - store_artifacts:
-          path: notification/target/munit-reports
-  deploy:
-    - run: |
-          echo Deploy to Cloudhub
-          cd ~/project/notification
-          mvn package mule:deploy -DskipMunitTests
+      - run: echo test
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
       - test
-      - deploy
