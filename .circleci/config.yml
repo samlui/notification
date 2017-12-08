@@ -23,13 +23,13 @@ jobs:
       - checkout
       
       - run: |
+          echo Download Dependencies
           ls -la ~
           ls -la ~/project
           mvn -v
           echo done run
           mkdir ~/.m2
           cp ~/project/settings.xml ~/.m2
-          cd ~/project/notification
           cd ~/project/notification
           mvn package
 
@@ -42,6 +42,7 @@ jobs:
           path: notification/target/notification-1.0.0-SNAPSHOT.zip
           
       - run: |
+          echo Running MUnit tests
           cd ~/project/notification
           mvn clean test -Dmunit.test=.*-test.*
           cp ~/project/notification/target/surefire-reports/*.xml ${TEST_REPORTS}
@@ -56,5 +57,11 @@ jobs:
       # Upload test results
       - store_test_results:
           path: ${TEST_REPORTS}
-      
+          
+      - run: |
+          echo Deploy to Cloudhub
+          cd ~/project/notification
+          mvn mule:deploy
+          
+
  
