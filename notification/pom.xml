@@ -44,7 +44,7 @@
 			        <works>1</works>
 			        <redeploy>true</redeploy>
 			        <region>ap-southeast-2</region>
-			        <businessGroup>samuel.lui\Customers/SGM</businessGroup>
+			        <businessGroup>samuel.lui\Customers\SGM</businessGroup>
 
 		        </configuration>
 		        <executions>
