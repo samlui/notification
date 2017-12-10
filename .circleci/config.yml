@@ -23,6 +23,11 @@ jobs:
           cp ~/project/settings.xml ~/.m2
           cd ~/project/notification
           mvn package
+      
+      - save_cache:
+          key: notification-{{ checksum "~/project/notification/pom.xml" }}
+          paths:
+            - ~/.m2
             
       - store_artifacts:
           path: notification/target/notification-1.0.0-SNAPSHOT.zip
@@ -30,6 +35,7 @@ jobs:
   test:
     docker:
       - image: circleci/openjdk:8-jdk
+    
     environment:
       # Customize the JVM maximum heap limit
       MAVEN_OPTS: -Xmx3200m
@@ -37,6 +43,12 @@ jobs:
       
     steps:
       - checkout
+      
+      - restore_cache:
+         keys:
+           - notification-{{ checksum "~/project/notification/pom.xml" }}
+           - notification- # used if checksum fails
+           
       - run: |
           echo Running MUnit tests
           cd ~/project/notification
@@ -47,12 +59,25 @@ jobs:
           path: notification/target/surefire-reports
       - store_artifacts:
           path: notification/target/munit-reports
+          
   deploy:
+    docker:
+      - image: circleci/openjdk:8-jdk
+      
     steps:
+      
+      - checkout
+       
+      - restore_cache:
+         keys:
+           - notification-{{ checksum "~/project/notification/pom.xml" }}
+           - notification- # used if checksum fails
+           
       - run: |
           echo Deploy to Cloudhub
           cd ~/project/notification
           mvn package mule:deploy -DskipMunitTests
+          
 workflows:
   version: 2
   build_and_test_deploy:
