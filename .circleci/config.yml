@@ -17,11 +17,6 @@ jobs:
       - checkout
       
       - run: echo build
-      
-      - restore_cache:
-          keys:
-            - notification-{{ checksum "~/project/notification/pom.xml" }}
-            - notification-
             
       - run: |
           echo Download Dependencies
@@ -33,13 +28,6 @@ jobs:
           cp ~/project/settings.xml ~/.m2
           cd ~/project/notification
           mvn package
-
-      - save_cache:
-          key: 
-            - notification-{{ checksum "~/project/notification/pom.xml" }}
-            - notification-
-          paths:
-            - ~/.m2
             
       - store_artifacts:
           path: notification/target/notification-1.0.0-SNAPSHOT.zip
