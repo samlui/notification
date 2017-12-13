@@ -33,6 +33,8 @@ jobs:
           path: notification/target/notification-1.0.0-SNAPSHOT.zip
           
   test:
+    requires:
+      - build
     docker:
       - image: circleci/openjdk:8-jdk
     
@@ -61,6 +63,9 @@ jobs:
           path: notification/target/munit-reports
           
   deploy:
+    requires:
+      - test
+      
     docker:
       - image: circleci/openjdk:8-jdk
       
