@@ -37,7 +37,7 @@ jobs:
       - build
       
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: maven:3.6-jdk-8-alpine
     
     environment:
       # Customize the JVM maximum heap limit
@@ -68,7 +68,7 @@ jobs:
       - test
       
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: maven:3.6-jdk-8-alpine
       
     steps:
       
