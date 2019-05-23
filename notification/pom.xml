@@ -15,7 +15,7 @@
 		<mule.tools.version>1.2</mule.tools.version>
 		<munit.version>1.3.6</munit.version>
 	    <mule.munit.support.version>3.8.5</mule.munit.support.version>
-	    <user>samuel.lui</user>
+	    <user>lui-sam</user>
 	    <pass>Hello000</pass>
     </properties>
 
@@ -37,14 +37,14 @@
 			        <username>${user}</username>
 			        <password>${pass}</password>
 			        <!-- One of: server, serverGroup, cluster: -->
-			        <environment>Production</environment>
-			        <applicationName>sam-notification</applicationName>
+			        <environment>Sandbox</environment>
+			        <applicationName>git-notification</applicationName>
 			        <muleVersion>3.8.5</muleVersion>
 			        <workerType>Small</workerType>
 			        <works>1</works>
 			        <redeploy>true</redeploy>
 			        <region>ap-southeast-2</region>
-			        <businessGroup>samuel.lui</businessGroup>
+			        <!--<businessGroup>samuel.lui</businessGroup>-->
 
 
 		        </configuration>
