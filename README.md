@@ -2,4 +2,4 @@
 
 CI / CD Testing with CircleCI
 
-DevOps testing 1st
+DevOps testing 2nd
